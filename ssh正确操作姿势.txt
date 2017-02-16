@@ -1,0 +1,29 @@
+第一部创建SSH KEY 
+
+ssh-keygen -t rsa -C "自己的邮箱.com"如果一切顺利的话，可以在用户主目录里找到.ssh目录，里面有id_rsa和id_rsa.pub两个文件，这两个就是SSH Key的秘钥对，id_rsa是私钥，不能泄露出去，id_rsa.pub是公钥，可以放心地告诉任何人。
+
+登陆GitHub，打开“Account settings”，“SSH Keys”页面：
+
+多个ssh创建方式
+生成第二个ssh key
+ssh-keygen -t rsa -C "自己的邮箱.com" 
+
+这次不要一路回车了，给这个文件起一个名字 不然默认的话就覆盖了之前生成的第一个
+
+起个名字  密码的话 随缘吧
+
+
+在.ssh/下创建config文件 内容如下
+
+Host github.com  
+    HostName github.com  
+    PreferredAuthentications publickey  
+    IdentityFile ~/.ssh/id_rsa  
+  
+Host warlock.github.com  
+    HostName github.com  
+    PreferredAuthentications publickey  
+    IdentityFile ~/.ssh/warlock  
+
+
+Host名字随意
