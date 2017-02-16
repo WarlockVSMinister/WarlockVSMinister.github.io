@@ -27,3 +27,13 @@ Host warlock.github.com
 
 
 Host名字随意
+
+ssh -T git@github.com 测试是否能跑通
+
+ssh提交的时候默认会读取id_rsa   如果要提交到另一个ssh上的时候需要提交的时候修改提交地址：
+例子  git@warlock.github.com:WarlockVSMinister/WarlockVSMinister.github.io.git
+
+http://www.cnblogs.com/zichi/p/4704824.html
+http://blog.csdn.net/itmyhome1990/article/details/42643233
+
+node博客https://github.com/75team/firekylin联系吧

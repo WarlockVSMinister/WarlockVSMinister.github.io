@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="author" content="智能社 - zhinengshe.com" />
+<meta name="copyright" content="智能社 - zhinengshe.com" />
+<meta name="description" content="智能社是一家专注于web前端开发技术的公司，目前主要提供JavaScript培训和HTML5培训两项服务，同时还推出了大量javascript基础知识教程，智能课堂为你带来全新的学习方法和快乐的学习体验。" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>智能社— http://www.zhinengshe.com</title>
+<style>
+*{margin:0; padding:0;}
+div{ width:200px; height:200px; background:red; -webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0);}
+</style>
+<script>
+function a2d(n){
+	return n*180/Math.PI;
+}
+document.addEventListener('DOMContentLoaded',function(){
+	var oDiv = document.querySelector('div');
+	function getDis(ev){
+		var x1 = ev.targetTouches[0].pageX;
+		var y1 = ev.targetTouches[0].pageY;
+		var x2 = ev.targetTouches[1].pageX;
+		var y2 = ev.targetTouches[1].pageY;
+		
+		var left = (x1+x2)/2;
+		var top = (y1+y2)/2;
+		
+		
+		return {"left":left,"top":top};
+	}
+	var l = 0;
+	var t = 0;
+	oDiv.addEventListener('touchstart',function(ev){
+		if(ev.targetTouches.length==2){
+			var oldL = l;
+			var oldT = t;
+			var downL = getDis(ev).left;
+			var downT = getDis(ev).top;
+			function fnMove(ev){
+				l = oldL+downL-getDis(ev).left;
+				t = oldT+downT-getDis(ev).top;
+				oDiv.style.WebkitTransform = 'translate3d('+-l+'px,'+-t+'px,0)';
+				oDiv.style.transform = 'translate3d('+-l+'px,'+-t+'px,0)';
+			}
+			function fnEnd(){}
+			document.addEventListener('touchmove',fnMove,false);
+			document.addEventListener('touchend',fnEnd,false);
+			ev.preventDefault();
+		}
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+	<div></div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
