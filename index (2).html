@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no" />
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+
+html,body{
+    width: 100%;
+    height: 100%;
+    font-family: "Microsoft YaHei";
+}
+*{margin:0; padding:0; font-weight: normal;text-indent: 0;}
+
+a,button,input,textarea,select{ 
+	background: none; 
+	-webkit-tap-highlight-color:rgba(255,0,0,0); 
+	outline:none; 
+	-webkit-appearance:none;
+}
+
+em{font-style:normal}
+
+li{list-style:none}
+
+a{text-decoration:none;}
+
+img{border:none; vertical-align:top;}
+
+table{border-collapse:collapse;}
+
+textarea{ resize:none; overflow:auto;}
+
+.fl{
+	float: left;
+}
+.fr{
+	float: right;
+}
+.clearfix:after {
+	content: " ";
+	display: block;
+	clear: both;
+	height: 0;
+}
+.clearfix {
+	zoom: 1;
+}
+.mt5{
+	margin-top: 5px;
+}
+
+.jx_box{
+	width: 100%;
+	height: 100%;
+	background-color: #ecede8;
+	font-size: 12px;
+}
+.jx_nav{
+	padding: 2% 5%;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+.jx_nav>.fl{
+	width: 68%;
+	padding-right: 5%;
+	box-sizing: border-box;
+	border-right: 1px solid #dedede;
+	color: #999;
+	font-size: 0.5rem;
+}
+.jx_nav>.fr{
+	width: 32%;
+	padding-left: 5%;
+	padding-top: 2.5%;
+	font-size: 0.7rem;
+	box-sizing: border-box;
+}
+.jx_nav_s1{
+	color: #feaa1b;
+}
+.jx_nav_time{
+	color: #111;
+}
+.jx_nav_sel{
+	position: relative;
+	width: 50%;
+}
+.jx_nav_sel select{
+	float: left;
+	width: 70%;
+	border: none;
+	font-size: 0.7rem;
+	text-align: left;
+}
+.icon_sel{
+	position: absolute;
+	right: 0;
+	top: 6px;
+	width: 12px;
+	height: 8px;
+	background: url(images/icon_sel.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.jx_tb1{
+	padding: 5%;
+	margin: 5% 0 8% 0;
+	box-sizing: border-box;
+	background-color: #fff;
+}
+.jx_tb1 table{
+	width: 100%;
+	border-collapse: initial;
+	background-color: #dedede;
+}
+.jx_tb1 td{
+	height: 3.2rem;
+	padding-left: 1rem;
+	background-color: #fff;
+}
+.jx_tb1_d1{
+	font-size: 1rem;
+}
+.jx_tb1_d2{
+	font-size: 0.5rem;
+}
+
+.js_rank_title{
+	height: 2.2rem;
+	padding: 0 5%;
+	border-top: 1px solid #dedede;
+	border-bottom: 1px solid #dedede;
+	line-height: 2.2rem;
+	font-size: 0.6rem;
+	color: #111;
+	background-color: #fff;
+}
+.js_rank_title .icon_rank{
+	margin-right: 5px;
+}
+.js_rank_title a{
+	display: inline-block;
+	width: 4rem;
+	height: 1.4rem;
+	border: 1px solid #999;
+	border-radius: 3px;
+	line-height: 1.4rem;
+	text-align: center;
+	color: #111;
+}
+.js_rank_title a.cur{
+	border-color: #2dc6fc;
+	color: #2dc6fc;
+}
+.icon_rank{
+	display: inline-block;
+	width: 12px;
+	height: 12px;
+	background: url(images/icon_rank.png) no-repeat;
+	background-size: 100% 100%;
+}
+
+.js_rank_table{
+	padding: 0 5% 5%;
+	background-color: #fff;
+}
+.js_rank_sort{
+	padding: 0.5rem 10px 0.5rem 0;
+	text-align: right;
+}
+.js_rank_sort a{
+	display: block;
+}
+.js_rank_sort img{
+	width: 1.2rem;
+}
+.jx_tb2{
+	width: 100%;
+	border-collapse: initial;
+	background-color: #888;
+}
+.jx_tb2 tr:first-child td{
+	background-color: #dedede;
+}
+.jx_tb2 td{
+	height: 1.5rem;
+	text-align: center;
+	color: #111;
+	background-color: #fff;
+}
+</style>
+<script type="text/javascript">
+	window.onload = window.onresize = function () {
+	    var view_width = document.getElementsByTagName('html')[0].getBoundingClientRect().width;
+
+	    var _html = document.getElementsByTagName('html')[0];
+
+	    if (view_width > 640)
+	    {
+	        _html.style.fontSize = 640 / 16 + 'px';
+	    }
+	    else
+	    {
+	        _html.style.fontSize = view_width / 16 + 'px';
+	    }
+	}
+
+</script>
+<script type="text/javascript" src="js/jq.js"></script>
+</head>
+<body>
+    <div class="jx_box">
+    	<section class="jx_nav clearfix">
+    		<div class="fl">
+    			<div class="clearfix jx_nav_d1">
+    				<span class="fl">全部地区</span>
+    				<span class="fr">全部渠道</span>
+    			</div>
+    			<div class="clearfix mt5">
+	    			<span class="fl">全部人员</span>
+	    			<span class="fr jx_nav_time">2018.13.12-2018.13.12</span>
+    			</div>
+    		</div>
+    		<div class="fr">
+    			<span class="jx_nav_s1">全部</span>
+    			<div class="jx_nav_sel fr">
+	    			<select>
+	    				<option>筛选</option>
+	    				<option>筛选</option>
+	    				<option>筛选</option>
+	    			</select>
+	    			<span class="icon_sel"></span>
+    			</div>
+    		</div>
+    	</section>
+
+    	<section class="jx_tb1">
+    		<table cellspacing="1">
+    			<tr>
+    				<td>
+    					<div class="jx_tb1_d1">117</div>
+    					<div class="jx_tb1_d2">订单数</div>
+    				</td>
+    				<td>
+    					<div class="jx_tb1_d1">117.00</div>
+    					<div class="jx_tb1_d2">交易额</div>
+    				</td>
+    			</tr>
+    			<tr>
+    				<td>
+    					<div class="jx_tb1_d1">4000</div>
+    					<div class="jx_tb1_d2">新增门店</div>
+    				</td>
+    				<td>
+    					<div class="jx_tb1_d1">40</div>
+    					<div class="jx_tb1_d2">取消关注</div>
+    				</td>
+    			</tr>
+    		</table>
+    	</section>
+
+    	<section class="js_rank">
+    		<div class="js_rank_title">
+    			<span class="fl"><i class="icon_rank"></i>排行榜</span>
+    			<div class="fr">
+    				<a href="#2">横屏查看</a>
+    				<a href="#2">导出数据</a>
+    			</div>
+    		</div>
+
+    		<div class="js_rank_table">
+    			<div class="js_rank_sort">
+    				<a href="#2"><img src="images/icon_sort.png"></a>
+    			</div>
+    			<table class="jx_tb2" cellspacing="1">
+    				<tr>
+    					<td>姓名</td>
+    					<td>新增门店</td>
+    					<td>订单数</td>
+    					<td>交易金额</td>
+    				</tr>
+    				<tr>
+    					<td>王铁蛋</td>
+    					<td>22222</td>
+    					<td>22222</td>
+    					<td>124542.00</td>
+    				</tr>
+    				<tr>
+    					<td>王铁蛋</td>
+    					<td>22222</td>
+    					<td>22222</td>
+    					<td>124542.00</td>
+    				</tr>
+    				<tr>
+    					<td>王铁蛋</td>
+    					<td>22222</td>
+    					<td>22222</td>
+    					<td>124542.00</td>
+    				</tr>
+    			</table>
+    		</div>
+    	</section>
+    </div>
+
+</body>
+</html>
