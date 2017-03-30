@@ -72,7 +72,7 @@
             transform-origin:50% 100%;  
             -webkit-transform: rotate(-30deg);
             transform: rotate(-30deg);
-            -webkit-animation:myfirst 2s;
+            -webkit-animation:myfirst 2s infinite linear;
             animation:myfirst 2s infinite linear;
         }
         .box1{
@@ -83,6 +83,33 @@
             margin-top: -20px;
             background-color: #000;
         }
+        @keyframes myfirst{
+            0%   {
+                background:red; 
+                -webkit-transform: rotate(-30deg);
+                transform: rotate(-30deg);
+            }
+            25%  {
+                background:yellow; 
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            50%  {
+                background:blue; 
+                -webkit-transform: rotate(30deg);
+                transform: rotate(30deg);
+            }
+            75%  {
+                background:green; 
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+            100% {
+                background:red; 
+                -webkit-transform: rotate(-30deg);
+                transform: rotate(-30deg);
+            }
+         }
         @-webkit-keyframes myfirst{
             0%   {
                 background:red; 
