@@ -51,9 +51,11 @@
             var speed = Math.abs(x + y + z - last_x - last_y - last_z) / diffTime * 10000;
             var status = document.getElementById("status");
 
+            var linkBox =document.getElementById("linkBox");
             if (speed > SHAKE_THRESHOLD) {
                 //doResult();
-                alert(123)
+                //alert(123)
+                linkBox.click()
             }
             last_x = x;
             last_y = y;
@@ -143,6 +145,7 @@
 <body>
     <div class="box"></div>
     <div class="box1"></div>
+    <a id="linkBox" href="./index.html"></a>
 </body>
 </html>
 </script>
