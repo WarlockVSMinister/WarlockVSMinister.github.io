@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>tap</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript">
+	var $ = function(selector){
+	    var dom = null;
+	    if(typeof selector === "string"){
+	        dom = document.querySelectorAll(selector);
+	    } else if(selector instanceof HTMLElement){
+	        dom = selector;
+	    }   
+	    return new $Element(dom);
+	}
+	window.$ = $;
+
+	window.onload=function(){
+		
+	}
+</script>
+</head>
+<body>
+    
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="copyright" content="" />
+<meta name="description" content="" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+<title>无缝滚动轮播图</title>
+<style>
+*{
+	margin:0; 
+	padding:0; 
+	list-style:none;
+}
+html{ 
+	font-size:20px;
+}
+.banner{ 
+	height:11rem; 
+	position:relative; 
+	overflow:hidden;
+}
+.banner ul{ 
+	position:absolute; 
+	top:0; 
+	left:0; 
+	height:15rem; 
+	-webkit-transform:translate3d(0,0,0);
+}
+.banner ul li{ 、
+	width:16rem; 
+	height:10rem; 
+	float:left; 
+	text-align:center; 
+	line-height:10rem; 
+	font-size:2.5rem; 
+}
+.banner ol{ 
+	position:absolute; 
+	left:50%; 
+	bottom:0; 
+	width:4rem; 
+	margin-left:-2rem;
+}
+.banner ol li{ 
+	width:0.5rem; 
+	height:0.5rem; 
+	background:#ccc; 
+	border-radius:50%; 
+	float:left;
+	margin:0 0.25rem;
+}
+.banner ol li.active{ 
+	background:#f90;
+}
+</style>
+<script>
+
+;(function(win,doc){
+	window.rem = 20/320*doc.documentElement.clientWidth;
+	doc.documentElement.style.fontSize = rem+'px';
+	win.addEventListener('resize',function(){
+		window.rem = 20/320*doc.documentElement.clientWidth;
+		doc.documentElement.style.fontSize = rem+'px';
+	},false);
+})(window,document);
+document.addEventListener('DOMContentLoaded',function(){
+	var oUl = document.querySelector('.banner ul');
+	var aLi = oUl.children;
+	var oOl = document.querySelector('.banner ol');
+	var aBtn = oOl.children;
+	oUl.style.width = (aLi.length*aLi[0].offsetWidth)/rem+'rem';
+	var iNow = 1;
+	var x = -iNow*aLi[0].offsetWidth/rem;
+	oUl.style.WebkitTransform = 'translate3d('+x+'rem,0,0)';
+	
+	//如果轮播图没走完，就不能继续拖
+	var bOk = false; 	
+	oUl.addEventListener('touchstart',function(ev){
+		if(bOk)return;
+		bOk = true;
+		oUl.style.WebkitTransition = 'none';
+		var oTouch = ev.targetTouches[0];
+		var downX = oTouch.pageX/rem;
+		var disX = downX-x;
+		function fnMove(ev){
+			var oTouch = ev.targetTouches[0];
+			x = oTouch.pageX/rem-disX;
+			oUl.style.WebkitTransform = 'translate3d('+x+'rem,0,0)';
+		}
+		function fnEnd(ev){
+			var oTouch = ev.changedTouches[0];
+			document.removeEventListener('touchmove',fnMove,false);
+			document.removeEventListener('touchend',fnEnd,false);
+			var upX = oTouch.pageX/rem;
+			if(Math.abs(upX-downX)>100/rem){
+				if(upX<downX){
+					iNow++;
+				}else if(upX>downX){
+					iNow--;
+				}
+			}
+			x = -iNow*aLi[0].offsetWidth/rem;
+			oUl.style.WebkitTransition = '.3s all ease';
+			oUl.style.WebkitTransform = 'translate3d('+x+'rem,0,0)';
+			function tranEnd(){
+				oUl.removeEventListener('transitionend',tranEnd,false);
+				if(iNow==0){
+					iNow = aLi.length-2;
+					x = -iNow*aLi[0].offsetWidth/rem;
+					oUl.style.WebkitTransition = 'none';
+					oUl.style.WebkitTransform = 'translate3d('+x+'rem,0,0)';
+				}
+				if(iNow==aLi.length-1){
+					iNow = 1;
+					x = -iNow*aLi[0].offsetWidth/rem;
+					oUl.style.WebkitTransition = 'none';
+					oUl.style.WebkitTransform = 'translate3d('+x+'rem,0,0)';
+				}
+				for(var i=0;i<aBtn.length;i++){
+					aBtn[i].className = '';
+				}
+				aBtn[iNow-1].className = 'active';
+				bOk = false;
+			}
+			oUl.addEventListener('transitionend',tranEnd,false);
+			
+		}
+		document.addEventListener('touchmove',fnMove,false);
+		document.addEventListener('touchend',fnEnd,false);
+		ev.preventDefault();
+	},false);
+},false);
+</script>
+</head>
+
+<body>
+	<div class="banner">
+		<ul>
+			<li style=" background:#9f0;">3</li>
+			<li style=" background:#f90;">0</li>
+			<li style=" background:#09f;">1</li>
+			<li style="	background:#0f9;">2</li>
+			<li style=" background:#9f0;">3</li>
+			<li style=" background:#f90;">0</li>
+		</ul>
+		<ol>
+			<li class="active"></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ol>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
