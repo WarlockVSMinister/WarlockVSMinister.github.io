@@ -22,25 +22,24 @@
 			window.history.go(1);
 		}
 		oAdd.onclick=function(){
-			window.history.go(1);
+			window.history.pushState({a:123},null,'f.html');
 		}
 		oReplace.onclick=function(){
-			window.history.go(1);
+			window.history.replaceState({b:321},null,'e.html')
 		}
 		oNumber.innerHTML = window.history.length;
 	}
 </script>
 </head>
 <body>
-	<div id="back">返回</div>
-	<div id="go">前进</div>
-	<div id="add">添加</div>
-	<div id="replace">修改</div>
+	<div id="back"><a href="javascript:void(0)">返回</a></div>
+	<div id="go"><a href="javascript:void(0)">前进</a></div>
+	<div id="add"><a href="javascript:void(0)">添加</a></div>
+	<div id="replace"><a href="javascript:void(0)">修改</a></div>
     <a href="./a.html">a页面</a>
     <a href="./b.html">b页面</a>
     <a href="./c.html">c页面</a>
     <a href="./d.html">d页面</a>
-    <a href="./e.html">e页面</a>
     <div id="number"></div>
 </body>
 </html>
