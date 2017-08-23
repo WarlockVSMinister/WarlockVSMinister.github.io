@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta content="email=no" name="format-detection">
+<title>flexible</title>
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	#body_wrap{
+		overflow: hidden;
+		background-color: #f6f6f6;
+	}
+
+	/* 本例子css -------------------------------------- */
+	.focus{ width:10.0rem; height:3.8rem;  margin:0 auto; position:relative; overflow:hidden;   }
+	.focus .hd{ width:100%; height:5px;  position:absolute; z-index:1; bottom:0; text-align:center;  }
+	.focus .hd ul{ overflow:hidden; display:-moz-box; display:-webkit-box; display:box; height:5px; background-color:rgba(51,51,51,0.5);   }
+	.focus .hd ul li{ -moz-box-flex:1; -webkit-box-flex:1; box-flex:1; }
+	.focus .hd ul .on{ background:#FF4000;  }
+	.focus .bd{ position:relative; z-index:0; }
+	.focus .bd li img{ width:100%;  height:5.0rem; margin-top: -1.2rem;}
+	.focus .bd li a{ -webkit-tap-highlight-color:rgba(0, 0, 0, 0); /* 取消链接高亮 */ }
+	
+	.recommend{
+		margin-bottom: 20px;
+	}
+	.recommend ul{
+		display: flex;
+		width: 100%;
+		padding-top: 20px;
+		background-color: #fff;
+	}
+	.recommend li{
+		flex: 1;
+	}
+	.recommend li div{
+		text-align: center;
+	}
+	.recommend li>a{
+		position: relative;
+		display: block;
+		height: 100%;
+	}
+	.recommend li>a:after{
+		content: '';
+	    width: 1px;
+	    height: 81.2%;
+	    border-right: 1px solid #eee;
+	    position: absolute;
+	    right: -1px;
+	    top: 10%;
+	}
+	.recommend li .title{
+		color: #ff6801;
+		font-size: 0.346667rem;
+	}
+	.recommend li .sub_title{
+		margin: 0.1rem 0;
+		font-size: 0.32rem;
+		color: #666;
+	}
+	.recommend li .imgs{
+		width: 2rem;
+		margin: 0 auto;
+	}
+	.recommend li img{
+
+	}
+	
+	.rob{
+		padding: 0 3% 3%;
+		background-color: #fff;
+	}
+	.rob h2{
+		padding: 0.3rem 0.35rem 0.2rem .3rem;
+		font-size: 0.426667rem;
+	}
+	.rob ul{
+		display: flex;
+		width: 100%;
+	}
+	.rob li{
+		flex: 1;
+		text-align: center;
+	}
+	.rob li a{
+		display: block;
+		width: 2rem;
+		color: #666;
+		margin: 0 auto;
+	}
+	.rob li a .imgs{
+		width: 1.8rem;
+		margin: 0 auto;
+	}
+	.rob li a .title{
+		margin: 0 auto;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.rob li a .price{
+		color: #F25;
+	}
+	.rob li a .salePrice{
+	    text-decoration: line-through;
+	}
+	
+	.list{
+		padding-bottom: 3%;
+		margin-top: 20px;
+		overflow: hidden;
+		background-color: #fff;
+	}
+	.list .key_item{
+		float: left;
+		width: 25%;
+		text-align: center;
+		color: #111;
+	}
+	.list_title,.love_title{
+		background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAATkAAAAKAgMAAACyFsHVAAAADFBMVEVMaXEzMzMzMzP///8xqFqyAAAAAnRSTlMAtlSR24EAAAABYktHRAMRDEzyAAAAQElEQVQoz2NgoDkQIVZhAHHKMok0jnEJccpWORBnHttK4pStmkCceVJYLV6FCkg1TwtVewPt/Uvt+KB6eqEIAACpih6NjokEAgAAAABJRU5ErkJggg==") no-repeat center center;
+		background-size: 41% auto;
+	    color: #333;
+	    font-size: 0.4rem;
+	    height: 1rem;
+	    line-height: 1rem;
+	    text-align: center;
+	}
+	
+	.love{
+		overflow: hidden;
+	}
+	.love .key_item{
+		float: left;
+		width: 47%;
+		margin-left: 2%;
+		margin-bottom: 2%;
+		color: #111;
+		background-color: #fff;
+	}
+	.love .key_item .tips{
+		display: inline-block;
+		height: 0.533333rem;
+		padding: 0 5px;
+		margin: 0 0 0.1rem; 
+		color: #5a6f7a;
+		line-height: 0.533333rem;
+		background-color: #eff3f6;
+	}
+	.love .key_item .name_tags{
+		height: 1.166667rem;
+		margin: 8px 8px 0;
+		overflow: hidden;
+	}
+	.love .key_item .title{
+		margin: 10px 8px;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+	.love .key_item .price{
+		float: left;
+		font-size: 0.42rem;
+		font-weight: 600;
+		color: #333;
+	}
+	.love .key_item .cfav{
+		float: right;
+		font-size: 0.32rem;
+		color: #666;
+	}
+	.love .key_item .bot_box{
+		height: 0.666667rem;
+		margin: 0 8px;
+		line-height: 0.666667rem;
+		overflow: hidden;
+	}
+</style>
+<script src="http://g.tbcdn.cn/mtb/lib-flexible/0.3.4/??flexible_css.js,flexible.js"></script>
+<script type="text/javascript" src="js/ejs.js"></script>
+<script type="text/javascript" src="js/TouchSlide.1.1.js"></script>
+
+</head>
+<body id="body_wrap">
+	<!--banner图片-->
+
+	
+ <script type="text/javascript">
+
+ 	//search
+
+	//banner
+  	var banner = `<% if (data.success==true) { %>
+
+			<div id="focus" class="focus">
+				<div class="hd">
+					<ul></ul>
+				</div>
+				<div class="bd">
+					<ul>
+						<% for(var i=0;i<data.data[51822].list.length;i++){ %>
+							<li><a href="#"><img src="<%= data.data[51822].list[i].image_800 %>_360x480.v1cAC.70.webp" /></a></li>
+				  		<% } %>
+					</ul>
+				</div>
+			</div>
+			
+		<% } %>`
+
+	//recommend    data.data[51827].list.length
+  	var recommend = `<% if (data.success==true) { %>
+			<ul>
+				<% for (var i=0;i<data.data[51827].list.length;i++) { %>
+				<li>
+					<a href="#2">
+						<div class="title"><%= data.data[51827].list[i].title %></div>
+						<div class="sub_title"><%= data.data[51827].list[i].description %></div>
+						<div class="imgs"><img width="100%" src="<%= data.data[51827].list[i].image %>" alt="" /></div>
+					</a>
+				</li>
+	  			<% } %>
+		  	</ul>
+		  
+		<% } %>`
+
+	//recommend   data.data[41119].list[0].list.length
+  	var rob = `<% if (data.success==true) { %>
+	  		
+	  		<h2><%= data.data[41119].list[0].title %></h2>
+			<ul>
+				<% for (var i=0;i<4;i++) { %>
+				<li>
+					<a href="#2">
+						<div class="imgs"><img width="100%" src="<%= data.data[41119].list[0].list[i].img %>" alt="" /></div>
+						<div class="title"><%= data.data[41119].list[0].list[i].title %></div>
+						<div>
+							<span class="price"><%= data.data[41119].list[0].list[i].price %></span>
+							<span class="salePrice"><%= data.data[41119].list[0].list[i].salePrice %></span>
+						</div>
+					</a>
+				</li>
+	  			<% } %>
+		  	</ul>
+		  
+		<% } %>`
+
+	var list = `
+		<h2 class="list_title">热门市场</h2>
+
+		<div>
+			<% for(var i=0;i<data.data[51836].list.length;i++){ %>
+				<a class="key_item" href="<%= data.data[51836].list[i].link %>">
+					<img src="<%= data.data[51836].list[i].image %>" alt="" />
+					
+					<div><%= data.data[51836].list[i].title %></div>
+				</a>
+			<% } %>
+		</div>
+	`
+
+	var love_title = `
+		<h2 class="love_title"><%= data.result.wall.title %></h2>
+	`
+	var love = `
+		<div>
+			<% for(var i=0;i<data.result.wall.docs.length;i++){ %>
+				<a class="key_item" href="<%= data.result.wall.docs[i].link %>">
+					<img width="100%" src="<%= data.result.wall.docs[i].img %>_360x480.v1cAC.70.webp" alt="" />
+					<div class="name_tags">
+						<% for(var j=0;j<data.result.wall.docs[i].props.length;j++){ %>
+							<span class="tips"><%= data.result.wall.docs[i].props[j] %></span>
+						<% } %>
+					</div>
+					<div class="title"><%= data.result.wall.docs[i].title %></div>
+					<div class="bot_box">
+						<span class="price">￥<%= data.result.wall.docs[i].price %></span>
+						<span class="cfav">❤<%= data.result.wall.docs[i].cfav %></span>
+					</div>
+				</a>
+			<% } %>
+		</div>
+		
+	`
+  	function renderFunc(ele,datas,className){
+  		/****
+			*ele:要渲染的模板
+			*datas:渲染模板的数据
+			*传入的className
+  		****/
+  		var className = className || "";
+  		var datas = datas || "";
+  		var ele = ele || "";
+
+  		var newss = ejs.render(ele,{"data":datas});
+  		var oDiv = document.createElement("div");
+  		oDiv.innerHTML = newss;
+  		oDiv.className = className;
+  		document.getElementsByTagName("body")[0].appendChild(oDiv)
+  	}
+
+  	function jsonp51822_51827_41119_51833_51836_4604(data){
+
+  		renderFunc(banner,data,"banner")
+  		/*document.getElementsByClassName("banner")[0].style.width=document.documentElement.clientWidth*5+"px";
+  		
+  		var bannerA = document.querySelectorAll(".banner a");
+  		var bannerBox = document.querySelectorAll(".banner");
+  		
+  		for(var i=0;i<bannerA.length;i++){
+  			bannerA[i].style.width = document.documentElement.clientWidth+"px";
+  		}
+
+  		bannerBox[0].addEventListener("touchstart",function(ev){
+  			console.log(11111);
+  			console.log(ev);
+  		},false)
+
+  		bannerBox[0].addEventListener("touchmove",function(ev){
+  			console.log(2222);
+  			console.log(ev);
+  		},false)*/
+
+  		
+
+  		renderFunc(recommend,data,"recommend")
+
+  		renderFunc(rob,data,"rob")
+
+  		renderFunc(list,data,"list")
+
+  		TouchSlide({ 
+			slideCell:"#focus",
+			titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+			mainCell:".bd ul", 
+			effect:"leftLoop", 
+			autoPlay:true,//自动播放
+			autoPage:true //自动分页
+		});
+  	}
+
+  	var jsonNum = 1;
+  	var keys = 1;
+  	function jsonp1(data){
+  		renderFunc(love_title,data,"");
+
+  		renderFunc(love,data,"love")
+  		jsonNum++;
+  	}
+
+
+  	function jsonp(data){
+
+  		renderFunc(love,data,"love")
+  		jsonNum++;
+
+  		keys =1;
+  	}
+
+  	(function(a){
+
+  	})(window)
+
+  	document.onscroll=function(ev){
+  		if(keys == 1 && document.body.clientHeight-2000<=document.body.scrollTop+document.documentElement.clientHeight){
+  			var oScript = document.createElement("script");
+  			oScript.src="http://list.mogujie.com/search?cKey=h5-shopping&fcid=&pid=9750&searchTag=&sort=pop&page="+jsonNum+"&_version=61&_=1503370589760&callback=jsonp";
+  			keys = 0;
+  			document.getElementsByTagName('body')[0].after(oScript)
+  		}
+	}
+</script>
+
+<script type="text/javascript" src="http://mce.mogucdn.com/jsonp/multiget/3?appPlat=m&pids=51822%2C51827%2C41119%2C51833%2C51836%2C4604&callback=jsonp51822_51827_41119_51833_51836_4604"></script>
+<script type="text/javascript" src="http://list.mogujie.com/search?cKey=h5-shopping&fcid=&pid=9750&searchTag=&sort=pop&page=1&_version=61&_=1503370589760&callback=jsonp1"></script>
+   
+</body>
+</html>
