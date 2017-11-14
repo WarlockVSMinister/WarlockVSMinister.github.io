@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Examples</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+
+</head>
+<body>
+    <img class="imgs" src="">
+<script type="text/javascript">
+    var img = "imgurl";//imgurl 就是你的图片路径  
+    var Imgs = document.querySelectorAll(".imgs");
+
+function getBase64(url){
+    //通过构造函数来创建的 img 实例，在赋予 src 值后就会立刻下载图片，相比 createElement() 创建 <img> 省去了 append()，也就避免了文档冗余和污染
+    var Img = new Image(),
+        dataURL='';
+    Img.src=url;
+    Img.onload=function(){ //要先确保图片完整获取到，这是个异步事件
+        var canvas = document.createElement("canvas"), //创建canvas元素
+            width=Img.width, //确保canvas的尺寸和图片一样
+            height=Img.height;
+        canvas.width=width;
+        canvas.height=height;
+        canvas.backgroundColor='#fff';
+        canvas.getContext("2d").drawImage(Img,0,0,width,height); //将图片绘制到canvas中
+        dataURL=canvas.toDataURL(); //转换图片为dataURL
+
+        Imgs[0].src = dataURL;
+    };
+}
+
+getBase64('../css3/3.jpg');
+
+</script>
+</body>
+</html>

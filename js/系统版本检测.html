@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>判断系统内核，浏览器</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<script type="text/javascript">
+	var client = function(){
+	    var engine = {
+	        //呈现引擎 主流五个
+	        ie: 0,
+	        gecko: 0,
+	        webkit: 0,
+	        khtml: 0,
+	        opera: 0,
+	        //具体的版本号
+	        ver: null,
+	        cur: ""
+	    };
+	    
+	    var browser = {
+	        //浏览器
+	        ie: 0,
+	        firefox: 0,
+	        safari: 0,
+	        konq: 0,
+	        opera: 0,
+	        chrome: 0,
+	        //具体的版本号
+	        ver: null,
+	        cur: ""
+	    };
+
+	    //识别浏览器
+	    var system = {
+	        win: false,
+	        mac: false,
+	        x11: false,
+	        //移动设备
+	        iphone: false,
+	        ipod: false,
+	        ipad: false,
+	        ios: false,
+	        android: false,
+	        winPhone: false,
+	        cur: "" 
+	    };
+
+	    //识别顺序 Opera>WebKit>KHTML>Gecko>IE
+	    var ua = window.navigator.userAgent;
+	    if (window.opera){
+	        engine.ver = window.opera.version();
+	        engine.opera = browser.opera = parseFloat(engine.ver);
+	        engine.cur = "opera";
+	        browser.cur = "opera";
+	    }else if(/AppleWebKit\/(\S+)/.test(ua)){
+	        //RegExp["$1"]表示第一个子捕获
+	        engine.ver =  RegExp["$1"]; 
+	        engine.webkit = parseFloat(engine.ver);
+	        engine.cur = "webkit";
+	        if (/Chrome\/(\S+)/.test(ua)){
+	            browser.ver = RegExp["$1"];
+	            browser.chrome = parseFloat(browser.ver);
+	        	browser.cur = "chrome";
+	        } else if (/Version\/(\S+)/.test(ua)){
+	            browser.ver = RegExp["$1"];
+	            browser.safari = parseFloat(browser.ver);
+	        	browser.cur = "safari";
+	        } else if (/OPR\/(\S+)/.test(ua)){
+	            browser.ver = RegExp["$1"];
+	            browser.opera = parseFloat(browser.ver);
+	        	browser.cur = "opera";
+	        }
+	    }else if(/KHTML\/(\S+)/.test(ua) || /Konqueror\/([^;]+)/.test(ua)){
+	        engine.ver =  RegExp["$1"]; 
+	        engine.khtml = browser.konq = parseFloat(engine.ver);
+	        engine.cur = "khtml";
+	    }else if(/rv:([^\)]+)\) Gecko\/\d{8}/.test(ua)){
+	        engine.ver =  RegExp["$1"]; 
+	        engine.gecko = parseFloat(engine.ver);
+	        engine.cur = "gecko";
+	        //确定是不是 Firefox
+	        if (/Firefox\/(\S+)/.test(ua)){
+	            browser.ver = RegExp["$1"];
+	            browser.firefox = parseFloat(browser.ver);
+	        	browser.cur = "firefox";
+	        }
+	    }else if (/MSIE ([^;]+)/.test(ua)){
+	        engine.ver = RegExp["$1"];
+	        engine.ie = browser.ie= parseFloat(engine.ver);
+	        engine.cur = "ie";
+        	browser.cur = "ie";
+	    }
+	    //在此检测呈现引擎、平台和设备
+	    var p = navigator.platform;
+	    if(p.indexOf("Win") == 0){
+	    	system.win = true;
+	    	system.cur = "win";
+	    }else if(p.indexOf("Mac") == 0){
+	    	system.mac = true;
+	    	system.cur = "mac";
+	    }else if((p.indexOf("X11") == 0) || (p.indexOf("Linux") == 0)){
+	    	system.x11 = true;
+	    	system.cur = "x11";
+	    }
+
+	    //检测ios
+	    //if (system.mac && ua.indexOf("Mobile") > -1){
+	    if (ua.indexOf("iPhone") > -1){
+	        if (/CPU (?:iPhone )?OS (\d+_\d+)/.test(ua)){
+	            system.ios = parseFloat(RegExp.$1.replace("_", "."));
+	            system.cur = "ios";
+	        } else {
+	            system.ios = 2; //不能真正检测出来，所以只能猜测
+	        }
+	    } 
+	    //检测 Android 版本
+	    if (/Android (\d+\.\d+)/.test(ua)){
+	        system.android = parseFloat(RegExp.$1);
+            system.cur = "android";
+	    }
+	    //windows mobile
+	    if (/Windows Phone (\d+\.\d+)/.test(ua)){
+	        system.winPhone = parseFloat(RegExp.$1);
+            system.cur = "winPhone";
+	    }
+
+	    system.iphone = ua.indexOf("iPhone") > -1;
+	    system.ipod = ua.indexOf("iPod") > -1;
+	    system.ipad = ua.indexOf("iPad") > -1; 
+
+	    return {
+	        engine: engine,
+	        browser: browser,
+	        system: system
+	    }; 
+	}()
+
+</script>
+</head>
+<body>
+	<div class="box"></div>
+    <script type="text/javascript">
+    	var oBox = document.querySelectorAll(".box")[0];
+
+    	var oHtml = `
+			当前浏览器内核:`+client.engine.cur+`,
+			当前浏览器:`+client.browser.cur+`,
+			当前系统:`+client.system.cur+`,
+    	`;
+    	oBox.innerHTML = oHtml;
+    </script>
+</body>
+</html>
