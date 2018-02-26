@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>css3动态气泡背景</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<link href="" rel="stylesheet">
+<style type="text/css">
+	*{
+		margin: 0;
+		padding: 0;
+	}
+	html,body{
+		width: 100%;
+		height: 100%;
+	    overflow: hidden;
+	}
+	.box{
+		width: 100%;
+		height: 100%;
+	    background: #50a3a2;
+	    background: -webkit-linear-gradient(top left,#50a3a2 0,#53e3a6);
+	    background: linear-gradient(to bottom right,#50a3a2 0,#53e3a6);
+	}
+	ul{
+		position: relative;
+	}
+	ul>li{
+		position: absolute;
+		bottom: -160px;
+		list-style: none;
+		animation: 10s square infinite linear;
+		background-color: rgba(255,255,255,0.5);
+	}
+	li:nth-child(1){
+		left: 5%;
+		width: 60px;
+		height: 60px;
+        animation-delay: 4s;
+        animation-duration: 10s;
+	}
+	li:nth-child(2){
+		left: 16%;
+		width: 100px;
+		height: 100px;
+        animation-delay: 2s;
+        animation-duration: 7s;
+	}
+	li:nth-child(3){
+		left: 30%;
+		width: 50px;
+		height: 50px;
+        animation-delay: 10s;
+        animation-duration: 10s;
+	}
+	li:nth-child(4){
+		left: 40%;
+		width: 160px;
+		height: 160px;
+        animation-delay: 6s;
+        animation-duration: 10s;
+	}
+	li:nth-child(5){
+		left: 46%;
+		width: 120px;
+		height: 120px;
+        animation-delay: 20s;
+        animation-duration: 12s;
+	}
+	li:nth-child(6){
+		left: 60%;
+		width: 50px;
+		height: 50px;
+        animation-delay: 8s;
+        animation-duration: 8s;
+	}
+	li:nth-child(7){
+		left: 70%;
+		width: 30px;
+		height: 30px;
+        animation-delay: 14s;
+        animation-duration: 10s;
+	}
+	li:nth-child(8){
+		left: 80%;
+		width: 120px;
+		height: 120px;
+        animation-delay: 12s;
+        animation-duration: 8s;
+	}
+
+	/* css3动画 */
+
+ 	@keyframes square {
+	 	0% {
+        	opacity: 0;
+        	transform: translateY(0px) rotate(30deg);
+      	}
+      	20% {
+        	opacity: 0.2;
+        	transform: translateY(-200px) rotate(60deg)
+      	}
+      	40% {
+	        opacity: 0.4;
+	        transform: translateY(-400px) rotate(90deg);
+      	}
+      	60% {
+	        opacity: 0.6;
+	        transform: translateY(-600px) rotate(120deg);
+      	}
+      	80% {
+	        opacity: 0.8;
+	        transform: translateY(-800px) rotate(150deg);
+      	}
+      	100% {
+	        opacity: 1;
+	        transform: translateY(-1000px) rotate(180deg);
+      	}
+ 	}
+</style>
+</head>
+<body>
+	<div class="box">
+		
+	</div>
+    <ul>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    	<li></li>
+    </ul>
+</body>
+</html>
